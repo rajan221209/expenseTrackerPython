@@ -35,8 +35,15 @@ class ExpenseManagerApp:
         self.month_label = tk.Label(self.input_frame, text="Enter Month:", bg='#e0e0e0', font=('Arial', 12))
         self.month_label.grid(row=0, column=0, padx=5, pady=5)
 
-        self.month_entry = tk.Entry(self.input_frame, font=('Arial', 12))
-        self.month_entry.grid(row=0, column=1, padx=5, pady=5)
+        self.month_entry = tk.Label(self.input_frame, text="Select", bg='#e0e0e0', font=('Arial', 12))
+        self.month_entry.grid(row=1, column=0, padx=5, pady=5)
+
+        self.month = tk.StringVar(self.root)
+        self.month.set("Select a month")
+        self.month_option = tk.OptionMenu(self.input_frame, self.month, "Select a month")
+        self.month_option(row=1, column=1, padx=5, pady=5)
+        
+    
 
         self.expense_label = tk.Label(self.input_frame, text="Enter Expense Amount:", bg='#e0e0e0', font=('Arial', 12))
         self.expense_label.grid(row=1, column=0, padx=5, pady=5)
