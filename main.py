@@ -49,7 +49,9 @@ class ExpenseManagerApp:
         self.expense_label = tk.Label(self.input_frame, text="Enter Expense Amount:", bg='#e0e0e0', font=('Arial', 12))
         self.expense_label.grid(row=1, column=0, padx=5, pady=5)
 
-        self.expense_entry = tk.Entry(self.input_frame, font=('Arial', 12))
+        # Entry validation for integers
+        validate_int = (self.root.register(self.validate_integer), '%P')
+        self.expense_entry = tk.Entry(self.input_frame, font=('Arial', 12), validate='key', validatecommand=validate_int)
         self.expense_entry.grid(row=1, column=1, padx=5, pady=5)
 
         # Buttons
@@ -90,6 +92,13 @@ class ExpenseManagerApp:
 
         self.summary_label = tk.Label(self.result_frame, text="", bg='#e0e0e0', font=('Arial', 12))
         self.summary_label.pack()
+    
+    def validate_integer(self, new_value):
+        if new_value == "":
+            return True  # Allow empty string
+        if new_value.isdigit():
+            return True  # Allow integer input
+        return False  # Reject non-integer input
 
     def submit_expense(self):
         month = self.month_entry.get().strip()
