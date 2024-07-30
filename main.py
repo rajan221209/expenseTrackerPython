@@ -39,7 +39,7 @@ class ExpenseManagerApp:
 
         self.month_entry = tk.StringVar(self.root)
         self.month_entry.set("Select Month")
-        self.month_List = ["January", "Febuary", "March", "April", "June", "July", "August", "September", "Octuber", "December"]
+        self.month_List = ["January", "Febuary", "March", "April","May", "June", "July", "August", "September", "Octuber","November", "December"]
 
         self.month_option = tk.OptionMenu(self.input_frame, self.month_entry,*self.month_List)
         self.month_option.grid(row=0, column=1, padx=5, pady=5)
@@ -198,9 +198,9 @@ class ExpenseManagerApp:
         last_expense = self.expenses[last_month]
 
         summary_text = (
-            f"Total Expenses: ${total_expense:.2f}\n"
-            f"Average Monthly Expense: ${average_expense:.2f}\n"
-            f"Last Month's Expense ({last_month}): ${last_expense:.2f}\n"
+            f"Total Expenses: ₹{total_expense:.2f}\n"
+            f"Average Monthly Expense: ₹{average_expense:.2f}\n"
+            f"Last Month's Expense ({last_month}): ₹{last_expense:.2f}\n"
         )
 
         self.summary_label.config(text=summary_text)
