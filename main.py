@@ -112,7 +112,7 @@ class ExpenseManagerApp:
             # Add to existing expense
             previous_expense = self.expenses[month]
             new_expense = previous_expense + expense
-            comparison = f"Expense for {month} updated: ${new_expense:.2f}. Previous record: ${previous_expense:.2f}."
+            comparison = f"Expense for {month} updated: ₹{new_expense:.2f}. Previous record: ₹{previous_expense:.2f}."
             self.expenses[month] = new_expense
         else:
             # Add new entry
