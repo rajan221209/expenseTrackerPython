@@ -101,18 +101,22 @@ class ExpenseManagerApp:
         return False  # Reject non-integer input
 
     def submit_expense(self):
+
         month = self.month_entry.get().strip()
-        try:
-            expense = float(self.expense_entry.get().strip())
-        except ValueError:
-            messagebox.showerror("Input Error", "Please enter a valid number for the expense.")
-            return
+        if month != "Select Month":
+            try:
+                expense = float(self.expense_entry.get().strip())
+            except ValueError:
+                messagebox.showerror("Input Error", "Please enter a valid number for the expense.")
+                return
+        else:
+            messagebox.showerror("Invalid Input","Please select a month")
 
         if month in self.expenses:
             # Add to existing expense
             previous_expense = self.expenses[month]
             new_expense = previous_expense + expense
-            comparison = f"Expense for {month} updated: ${new_expense:.2f}. Previous record: ${previous_expense:.2f}."
+            comparison = f"Expense for {month} updated: ₹{new_expense:.2f}. Previous record: ₹{previous_expense:.2f}."
             self.expenses[month] = new_expense
         else:
             # Add new entry
@@ -198,9 +202,9 @@ class ExpenseManagerApp:
         last_expense = self.expenses[last_month]
 
         summary_text = (
-            f"Total Expenses: ${total_expense:.2f}\n"
-            f"Average Monthly Expense: ${average_expense:.2f}\n"
-            f"Last Month's Expense ({last_month}): ${last_expense:.2f}\n"
+            f"Total Expenses: ₹{total_expense:.2f}\n"
+            f"Average Monthly Expense: ₹{average_expense:.2f}\n"
+            f"Last Month's Expense ({last_month}): ₹{last_expense:.2f}\n"
         )
 
         self.summary_label.config(text=summary_text)
